@@ -39,12 +39,6 @@ if not exist "%TOMCAT_WEBAPPS%" (
 rem nom du fichier war (ex: use-framework.war)
 for %%F in ("%WAR%") do set "WAR_FILE_NAME=%%~nxF"
 
-rem sauvegarde l'ancien war s'il existe
-if exist "%TOMCAT_WEBAPPS%\%WAR_FILE_NAME%" (
-    echo [deploy-war] Sauvegarde de l'ancien %WAR_FILE_NAME% -> %WAR_FILE_NAME%.bak
-    move /Y "%TOMCAT_WEBAPPS%\%WAR_FILE_NAME%" "%TOMCAT_WEBAPPS%\%WAR_FILE_NAME%.bak" >nul
-)
-
 rem nom du dossier exploded (nom du war sans .war)
 set "APP_FOLDER_NAME=%WAR_FILE_NAME:.war=%"
 

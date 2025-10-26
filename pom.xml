@@ -7,30 +7,50 @@
     <groupId>itu.framework</groupId>
     <artifactId>framework-test</artifactId>
     <version>1.0.0</version>
-    <packaging>war</packaging>
+    <packaging>war</packaging>  <!-- WAR pour application web -->
 
     <properties>
         <maven.compiler.release>23</maven.compiler.release>
     </properties>
 
     <dependencies>
+        <!-- Framework personnalisé -->
         <dependency>
+            <groupId>itu.framework</groupId>
+            <artifactId>framework-sprint</artifactId>
+            <version>2.0.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/framework-sprint-2.0.0.jar</systemPath>
+        </dependency>
+        
+        <!-- Jakarta Servlet API -->
+        <!-- <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
             <version>6.0.0</version>
             <scope>provided</scope>
-        </dependency>
+        </dependency> -->
     </dependencies>
 
     <build>
-    <finalName>use-framework</finalName>
-    <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.11.0</version>
-            <configuration><release>23</release></configuration>
-        </plugin>
-    </plugins>
+        <finalName>use-framework</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <release>23</release>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+                <configuration>
+                    <warSourceDirectory>src/main/webapp</warSourceDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 </project>
