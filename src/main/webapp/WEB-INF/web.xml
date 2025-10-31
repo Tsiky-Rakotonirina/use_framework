@@ -5,4 +5,10 @@
                              https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
          version="6.0">
 
+    <!-- Paramètre pour spécifier le package à scanner par le framework -->
+    <context-param>
+        <param-name>scanPackage</param-name>
+        <param-value>com.example</param-value>
+    </context-param>
+
 </web-app>
