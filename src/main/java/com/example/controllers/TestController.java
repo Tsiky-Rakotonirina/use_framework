@@ -3,6 +3,7 @@ package com.example.controllers;
 import itu.framework.annotation.Controller;
 import itu.framework.annotation.Web;
 import itu.framework.scan.ModelView;
+import java.util.HashMap;
 
 @Controller
 public class TestController {
@@ -16,6 +17,13 @@ public class TestController {
     @Web(value = "/hello", method = "GET")
     public ModelView sayHello() {
         ModelView mv = new ModelView("page.jsp");
+
+        // Ajout de données au model (ex: nom et message)
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("name", "Tsiky");
+        data.put("message", "Bonjour depuis ModelView");
+        mv.addModel(data);
+
         return mv;
     }
     
