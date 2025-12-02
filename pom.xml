@@ -21,9 +21,9 @@
         <dependency>
             <groupId>itu.framework</groupId>
             <artifactId>framework-sprint</artifactId>
-            <version>4.0.0</version>
+            <version>8.0.0</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/framework-sprint-4.0.0.jar</systemPath>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/framework-sprint-8.0.0.jar</systemPath>
         </dependency>
     </dependencies>
 

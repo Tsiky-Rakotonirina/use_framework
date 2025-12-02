@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Framework Tests</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .test-section {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 5px;
+        }
+        h3 {
+            color: #555;
+        }
+        form {
+            margin: 10px 0;
+        }
+        input, button {
+            margin: 5px 0;
+            padding: 8px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px 20px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .link-test {
+            margin: 10px 0;
+        }
+        a {
+            color: #2196F3;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tests du Framework MVC</h1>
+    
+    <div class="test-section">
+        <h2>TEST 1 & 2: GET/POST automatique et spécifique</h2>
+        <div class="link-test">
+            <h3>GET /home (supporte GET et POST)</h3>
+            <a href="home" target="_blank">Tester GET /home</a>
+        </div>
+        <div>
+            <h3>POST /home</h3>
+            <form action="home" method="POST" target="_blank">
+                <button type="submit">Tester POST /home</button>
+            </form>
+        </div>
+        <div>
+            <h3>GET /profile?id=123</h3>
+            <a href="profile?id=123" target="_blank">Tester GET /profile</a>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>TEST 3: POST uniquement</h2>
+        <h3>POST /submit</h3>
+        <form action="submit" method="POST" target="_blank">
+            <input type="text" name="data" placeholder="Données à envoyer" value="Test data" required><br>
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>
+    
+    <div class="test-section">
+        <h2>TEST 4: Path variable avec ModelView</h2>
+        <h3>GET /user/{id}</h3>
+        <div class="link-test">
+            <a href="user/42" target="_blank">Tester GET /user/42</a>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>TEST 5: PUT avec path variable</h2>
+        <h3>PUT /update/{id}</h3>
+        <form action="update/99" method="POST" target="_blank">
+            <input type="hidden" name="_method" value="PUT">
+            <input type="text" name="name" placeholder="Nouveau nom" value="John Doe" required><br>
+            <button type="submit">Mettre à jour</button>
+        </form>
+        <p><em>Note: Utilisez _method=PUT dans le formulaire</em></p>
+    </div>
+    
+    <div class="test-section">
+        <h2>TEST 6: @RequestParameter avec clé différente</h2>
+        <h3>GET /search?q=java&page=1</h3>
+        <form action="search" method="GET" target="_blank">
+            <input type="text" name="q" placeholder="Recherche" value="java" required><br>
+            <input type="text" name="page" placeholder="Page" value="1" required><br>
+            <button type="submit">Rechercher</button>
+        </form>
+    </div>
+    
+    <div class="test-section">
+        <h2>TEST 7: Map reçoit tous les paramètres</h2>
+        <h3>GET /params?param1=value1&param2=value2&param3=value3</h3>
+        <form action="params" method="GET" target="_blank">
+            <input type="text" name="param1" placeholder="Param 1" value="value1"><br>
+            <input type="text" name="param2" placeholder="Param 2" value="value2"><br>
+            <input type="text" name="param3" placeholder="Param 3" value="value3"><br>
+            <button type="submit">Envoyer tous les paramètres</button>
+        </form>
+    </div>
+    
+    <div class="test-section">
+        <h2>TEST 8: POJO parameter binding (Sprint 8 bis)</h2>
+        <h3>POST /register (user.name, user.age, user.email)</h3>
+        <form action="register" method="POST" target="_blank">
+            <input type="text" name="user.name" placeholder="Nom" value="Alice" required><br>
+            <input type="number" name="user.age" placeholder="Age" value="25" required><br>
+            <input type="email" name="user.email" placeholder="Email" value="alice@example.com" required><br>
+            <button type="submit">S'enregistrer</button>
+        </form>
+    </div>
+    
+    <div class="test-section">
+        <h2>TEST 9: POJO avec ModelView</h2>
+        <h3>POST /create-user (user.name, user.age, user.email)</h3>
+        <form action="create-user" method="POST" target="_blank">
+            <input type="text" name="user.name" placeholder="Nom" value="Bob" required><br>
+            <input type="number" name="user.age" placeholder="Age" value="30" required><br>
+            <input type="email" name="user.email" placeholder="Email" value="bob@example.com" required><br>
+            <button type="submit">Créer utilisateur</button>
+        </form>
+    </div>
+    
+    <div class="test-section">
+        <h2>TEST 10: Plusieurs POJO parameters</h2>
+        <h3>POST /order (user.*, product.*)</h3>
+        <form action="order" method="POST" target="_blank">
+            <h4>Informations client</h4>
+            <input type="text" name="user.name" placeholder="Nom client" value="Charlie" required><br>
+            <input type="email" name="user.email" placeholder="Email client" value="charlie@example.com" required><br>
+            <h4>Informations produit</h4>
+            <input type="text" name="product.name" placeholder="Nom produit" value="Laptop" required><br>
+            <input type="number" step="0.01" name="product.price" placeholder="Prix" value="999.99" required><br>
+            <input type="number" name="product.quantity" placeholder="Quantité" value="2" required><br>
+            <button type="submit">Commander</button>
+        </form>
+    </div>
+    
+    <div class="test-section">
+        <h2>TEST 11: Mélange String, POJO et path variable</h2>
+        <h3>POST /edit-user/{id} (id, user.*, comment)</h3>
+        <form action="edit-user/456" method="POST" target="_blank">
+            <input type="text" name="user.name" placeholder="Nouveau nom" value="David" required><br>
+            <input type="number" name="user.age" placeholder="Nouvel age" value="35" required><br>
+            <input type="text" name="comment" placeholder="Commentaire" value="Mise à jour des infos" required><br>
+            <button type="submit">Modifier utilisateur</button>
+        </form>
+    </div>
+    
+    <div class="test-section">
+        <h2>TEST 12: DELETE method</h2>
+        <h3>DELETE /delete/{id}</h3>
+        <form action="delete/789" method="POST" target="_blank">
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit">Supprimer</button>
+        </form>
+    </div>
+    
+    <hr>
+    <p><em>Tous les tests s'ouvrent dans un nouvel onglet pour visualiser les résultats</em></p>
+</body>
+</html>
