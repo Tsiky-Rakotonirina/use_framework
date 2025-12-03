@@ -1,9 +1,13 @@
 package com.example.models;
 
+import java.time.LocalDate;
+
 public class User {
     private String name;
     private int age;
     private String email;
+    private LocalDate birthDate;
+    private Genre genre;
     
     public User() {
     }
@@ -30,5 +34,21 @@ public class User {
     
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 }
