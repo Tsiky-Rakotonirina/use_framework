@@ -2,6 +2,7 @@ package com.example.controllers;
 
 import itu.framework.annotation.Controller;
 import itu.framework.annotation.HttpMethod;
+import itu.framework.annotation.Json;
 import itu.framework.annotation.RequestParameter;
 import itu.framework.annotation.Url;
 import itu.framework.web.ModelView;
@@ -59,5 +60,55 @@ public class TestController {
         mv.addData("genre", user.getGenre());
         mv.addData("categories", product.getCategory());
         return mv;
+    }
+    
+    // TEST 7: JSON API - User seul (Sprint 9)
+    @Url("/api/user/{id}")
+    @HttpMethod("GET")
+    @Json
+    public User getUser(String id) {
+        User user = new User();
+        user.setName("John Doe");
+        user.setAge(30);
+        user.setEmail("john@example.com");
+        return user;
+    }
+    
+    // TEST 8: JSON API - User avec path variable (Sprint 9)
+    @Url("/api/user-detail/{id}")
+    @HttpMethod("GET")
+    @Json
+    public ModelView getUserDetail(String id) {
+        User user = new User();
+        user.setName("Jane Smith");
+        user.setAge(25);
+        user.setEmail("jane@example.com");
+        
+        ModelView mv = new ModelView();
+        mv.addData("user", user);
+        mv.addData("userId", id);
+        return mv;
+    }
+    
+    // TEST 9: JSON API - Liste de produits (Sprint 9)
+    @Url("/api/products")
+    @HttpMethod("GET")
+    @Json
+    public java.util.List<Product> getProducts() {
+        java.util.List<Product> products = new java.util.ArrayList<>();
+        
+        Product p1 = new Product();
+        p1.setName("Laptop");
+        p1.setPrice(999.99);
+        p1.setQuantity(5);
+        products.add(p1);
+        
+        Product p2 = new Product();
+        p2.setName("Mouse");
+        p2.setPrice(29.99);
+        p2.setQuantity(50);
+        products.add(p2);
+        
+        return products;
     }
 }
