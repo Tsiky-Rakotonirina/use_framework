@@ -7,10 +7,10 @@
 <body>
 <h1>Navigation de test</h1>
 <ul>
-    <li><a href="tests.html"><strong>⭐ PAGE DE TESTS DU FRAMEWORK</strong></a></li>
     <li><a href="index.html">Accueil (index.html)</a></li>
     <li><a href="about.html">À propos (about.html)</a></li>
-    <li><a href="page.jsp">Page JSP (page.jsp)</a></li>
+    <li><a href="form.jsp">Formulaire JSP (form.jsp)</a></li>
+    <li><a href="upload.jsp">Upload JSP (upload.jsp)</a></li>
     <li><a href="maison.png">Image (maison.png)</a></li>
     <li><a href="fiche.pdf">Fiche PDF (fiche.pdf)</a></li>
     <li><a href="docs/manual.html">Document interne (docs/manual.html) — peut exister ou non</a></li>

@@ -8,6 +8,7 @@ import itu.framework.annotation.Url;
 import itu.framework.web.ModelView;
 import com.example.models.User;
 import com.example.models.Product;
+import com.example.models.UserProfile;
 import java.util.Map;
 
 @Controller
@@ -110,5 +111,51 @@ public class TestController {
         products.add(p2);
         
         return products;
+    }
+    
+    // TEST 10: Upload simple - byte[] parameter (Sprint 10)
+    @Url("/upload/single")
+    @HttpMethod("POST")
+    public ModelView uploadSingle(byte[] file) {
+        ModelView mv = new ModelView("result.jsp");
+        mv.addData("title", "TEST Upload Simple");
+        if (file != null) {
+            mv.addData("fileSize", file.length + " bytes");
+        } else {
+            mv.addData("fileSize", "Aucun fichier");
+        }
+        return mv;
+    }
+    
+    // TEST 11: Upload avec Map - fichiers dans Map (Sprint 10)
+    @Url("/upload/multi")
+    @HttpMethod("POST")
+    public ModelView uploadMultiple(Map<String, Object> params) {
+        ModelView mv = new ModelView("result.jsp");
+        mv.addData("title", "TEST Upload Multiple");
+        
+        int fileCount = 0;
+        for (Object value : params.values()) {
+            if (value instanceof byte[]) {
+                fileCount++;
+            }
+        }
+        mv.addData("fileCount", fileCount);
+        return mv;
+    }
+    
+    // TEST 12: Upload avec POJO - byte[] field (Sprint 10)
+    @Url("/upload/profile")
+    @HttpMethod("POST")
+    public ModelView uploadProfile(UserProfile profile) {
+        ModelView mv = new ModelView("result.jsp");
+        mv.addData("title", "TEST Upload Profile");
+        mv.addData("name", profile.getName());
+        if (profile.getPhoto() != null) {
+            mv.addData("photoSize", profile.getPhoto().length + " bytes");
+        } else {
+            mv.addData("photoSize", "Pas de photo");
+        }
+        return mv;
     }
 }
