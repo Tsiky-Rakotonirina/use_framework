@@ -1,8 +1,12 @@
 package com.example.models;
 
+import itu.framework.web.UploadFile;
+import java.util.Map;
+
 public class UserProfile {
     private String name;
-    private byte[] photo; // Upload de fichier
+    private UploadFile uploadedFile; // Upload de fichier
+    private Map<String, UploadFile> allFiles; // Tous les fichiers uploadés
     
     public UserProfile() {
     }
@@ -15,11 +19,19 @@ public class UserProfile {
         this.name = name;
     }
     
-    public byte[] getPhoto() {
-        return photo;
+    public UploadFile getUploadedFile() {
+        return uploadedFile;
     }
     
-    public void setPhoto(byte[] photo) {
-        this.photo = photo;
+    public void setUploadedFile(UploadFile uploadedFile) {
+        this.uploadedFile = uploadedFile;
+    }
+    
+    public Map<String, UploadFile> getAllFiles() {
+        return allFiles;
+    }
+    
+    public void setAllFiles(Map<String, UploadFile> allFiles) {
+        this.allFiles = allFiles;
     }
 }
